@@ -33,7 +33,7 @@ class Principal {
         // Verifica si hay productos en la base de datos
         if ($resultado->num_rows > 0) {
             // Botón para agregar un nuevo producto
-            echo '<hr><a href="Nou.php" class="btn btn-primary">Nou producte</a><hr>';
+            echo '<hr><a href="nou.php" class="btn btn-primary">Nou producte</a><hr>';
             // Tabla para mostrar la lista de productos
             echo '<table class="table table-striped">';
             echo '<thead>
@@ -59,7 +59,7 @@ class Principal {
                         <td>' . $fila['preu'] . '</td>
                         <td>' . $fila['categoria'] . '</td>
                         <td><a href="Modificar.php?id=' . $fila['id'] . '" class="btn btn-warning">Modificar</a></td>
-                        <td><a href="Eliminar.php?id=' . $fila['id'] . '" class="btn btn-danger">Eliminar</a></td>
+                        <td><a href="confirmar_eliminacio.php?id=' . $fila['id'] . '" class="btn btn-danger">Eliminar</a></td>
                       </tr>';
                 $i++;
             }
