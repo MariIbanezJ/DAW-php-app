@@ -1,6 +1,7 @@
 <?php
 require_once('Connexio.php');
 
+// Clase Eliminar cambio en rama main
 class Eliminar {
 
     public function eliminarProducte($id) {
