@@ -1,6 +1,6 @@
 <?php
 require_once('Connexio.php');
-
+// Clase Eliminar cambio desde develop
 class Eliminar {
 
     public function eliminarProducte($id) {
