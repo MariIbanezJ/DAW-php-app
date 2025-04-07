@@ -1,11 +1,55 @@
 <?php
+/**
+ * Controlador de actualización de productos - Operación CRUD
+ *
+ * Gestiona la actualización segura de productos mediante validación de datos
+ * y uso de sentencias preparadas para prevenir inyecciones SQL.
+ *
+ * @file      Actualitzar.php
+ */
+
 
 // Incluye el archivo de conexión
 require_once('Connexio.php');
 
+
+/**
+ * Clase encargada de actualizar un producto en la base de datos
+ *
+ * Procesa los datos enviados por POST desde un formulario de edición de producto.
+ * Valida los datos, los limpia para prevenir inyecciones SQL, y actualiza el producto correspondiente
+ * en la base de datos utilizando la clase `Connexio`.
+ *
+ *  Dependencias:
+ *  - Connexio: se encarga de la conexión con la base de datos
+ *
+ * @package DAWphpapp
+ * @version 1.0
+ * @author Carles Canals
+ * @since 1.0
+ *
+ * @uses Connexio Para obtener y cerrar la conexión a la base de datos
+ * @see Connexio
+ */
 class Actualitzar {
-    
-    // Método para actualizar un producto en la base de datos
+
+    /**
+     * Actualiza un producto en la base de datos.
+     *
+     * Esta función valida que todos los campos requeridos estén presentes, escapa los datos
+     * para evitar inyecciones SQL, ejecuta la consulta de actualización y redirige al usuario
+     * a la página principal si tiene éxito.
+     *
+     * @param string $id ID del producto que se va a actualizar.
+     * @param string $nom Nombre del producto.
+     * @param string $descripcio Descripción del producto.
+     * @param string $preu Precio del producto.
+     * @param string $categoria ID de la categoría del producto.
+     *
+     * @return void
+     * @throws mysqli_sql_exception Si ocurre un error durante la consulta SQL.
+     * @see Connexio::obtenirConnexio()
+     */
     public function actualizar($id, $nom, $descripcio, $preu, $categoria) {
         // Verifica si todos los campos requeridos están presentes
         if (!isset($id) || !isset($nom) || !isset($descripcio) || !isset($preu) || !isset($categoria)) {
@@ -51,8 +95,12 @@ $descripcio = isset($_POST['descripcio']) ? $_POST['descripcio'] : null;
 $preu = isset($_POST['preu']) ? $_POST['preu'] : null;
 $categoria = isset($_POST['categoria']) ? $_POST['categoria'] : null;
 
-// Crea una instancia de la clase Actualitzar y llama al método actualizar
+// Ejecuta el proceso de actualización
+/** @var Actualitzar $actualizarProducto */
 $actualizarProducto = new Actualitzar();
+
+// Llama a la función que actualiza el producto con los datos recibidos
+/** @see Actualitzar::actualizar()*/
 $actualizarProducto->actualizar($id, $nom, $descripcio, $preu, $categoria);
 
 ?>

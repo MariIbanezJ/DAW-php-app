@@ -1,10 +1,47 @@
 <?php
+
+/**
+ * Controlador de eliminación de productos - Operación CRUD
+ *
+ * Gestiona la eliminación segura de productos mediante validación estricta
+ * y uso de sentencias preparadas para prevenir inyecciones SQL.
+ *
+ * @file      borrar.php
+ */
+
+// Conexión a la base de datos
 require_once('Connexio.php');
 
-// Clase Eliminar cambio en rama main
-
+/**
+ * Script para eliminar un producto de la base de datos
+ *
+ * Este archivo valida una solicitud GET con el ID del producto, verifica la confirmación
+ * del usuario y ejecuta la eliminación mediante una sentencia preparada.
+ *
+ *  Dependencias:
+ *  - Connexio: se encarga de la conexión con la base de datos
+ *
+ * @package DAWphpapp
+ * @version 1.0
+ * @since 1.0
+ * @author Juan Marí Ibáñez
+ *
+ * @uses Connexio Para la conexión a la base de datos
+ * @see Connexio::obtenirConnexio()
+ */
 class Eliminar {
 
+    /**
+     * Elimina un producto por su ID
+     *
+     * Valida el ID, establece una conexión a la base de datos y ejecuta
+     * una sentencia preparada para eliminar el producto.
+     *
+     * @param int $id ID del producto a eliminar
+     * @return void
+     * @throws Exception Si el ID no es válido o hay un error en la consulta
+     * @see Connexio::obtenirConnexio()
+     */
     public function eliminarProducte($id) {
         // Validación del ID
         if (!is_numeric($id) || $id <= 0) {
@@ -37,7 +74,7 @@ class Eliminar {
 
 // Procesamiento de la solicitud
 try {
-    // Solo permitir método GET con parámetro ID
+    // Solo permitir métod o GET con parámetro ID
     if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['id'])) {
         $id = (int)$_GET['id'];
 
@@ -54,6 +91,8 @@ try {
         throw new Exception('Solicitud no vàlida');
     }
 } catch (Exception $e) {
+
+    // Redirige a la página principal con el mensaje de error
     header('Location: Principal.php?error=' . urlencode($e->getMessage()));
     exit();
 }

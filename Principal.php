@@ -1,11 +1,53 @@
 <?php
+/**
+ * Vista principal de gestión de productos - Muestra listado CRUD en tabla HTML
+ *
+ * Archivo que carga las dependencias necesarias (conexión BD y cabecera) y define
+ * la clase Principal para renderizar la interfaz de productos.
+ *
+ * @file      Principal.php
+ */
 
+// Conexión a la base de datos
 require_once('Connexio.php');
+
+// Cabecera HTML común
 require_once('Header.php');
 
+/**
+ * Clase Principal que gestiona la visualización de productos
+ *
+ * Esta clase muestra una lista de productos junto con sus categorías,
+ * y ofrece funcionalidades para añadir, modificar y eliminar productos.
+ *
+ * Dependencias:
+ * - Connexio: se encarga de la conexión con la base de datos
+ * - Header: genera la cabecera HTML
+ * - Footer: genera el pie de página HTML
+ *
+ * @package DAWphpapp
+ * @version 1.0
+ * @author Carles Canals
+ * @since 1.0
+ * @uses Connexio gestiona la conexión con la base de datos
+ * @uses Header muestra la cabecera de la aplicación
+ * @uses Footer muestra el pie de página de la aplicación
+ * @see Connexio::obtenirConnexio()
+ * @see Header::mostrar()
+ * @see Footer::mostrarFooter()
+ */
 class Principal {
-    
-    // Método para mostrar la lista de productos
+
+    /**
+     * Muestra la lista de productos en formato de tabla HTML
+     *
+     * Esta función obtiene los productos de la base de datos junto con su categoría,
+     * y los muestra en una tabla con opciones para modificar y eliminar cada producto.
+     * También incluye un botón para añadir nuevos productos.
+     *
+     * @return void
+     * @see Connexio::obtenirConnexio() obtiene la conexión a la base de datos.
+     */
     public function mostrarProductes() {
         // Obtiene la conexión a la base de datos
         $conexionObj = new Connexio();
@@ -78,8 +120,12 @@ class Principal {
     }
 }
 
-// Crea una instancia de la clase Principal y llama al método mostrarProductes
+// Crea una instancia de la clase Principal
+/** @var Principal $listaProductos */
 $listaProductos = new Principal();
+
+// Ejecuta la función que muestra los productos
+/**@see Principal::mostrarProductes()*/
 $listaProductos->mostrarProductes();
 
 ?>
