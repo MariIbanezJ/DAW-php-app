@@ -1,6 +1,29 @@
 <?php
+
+/**
+ * Formulario para añadir un nuevo producto
+ *
+ * muestra un formulario HTML para registrar un nuevo producto,
+ * junto con la lógica para recuperar dinámicamente las categorías desde la base de datos.
+ * También permite mostrar mensajes de error en caso de fallos durante el envío del formulario.
+ *
+
+ *
+ * @package DAWphpapp
+ * @version 1.0
+ * @author Juan Marí Ibáñez
+ * @since 1.0
+ *
+ * @file      nou.php
+ */
+
+// Conexión a la base de datos
 require_once('Connexio.php');
+
+// Cabecera HTML común
 require_once('Header.php');
+
+
 
 // Mostrar mensajes de error/success
 if (isset($_GET['error'])) {
@@ -48,5 +71,6 @@ if (isset($_GET['error'])) {
     </div>
 
 <?php
+// Pie de página HTML común
 require_once('Footer.php');
 ?>

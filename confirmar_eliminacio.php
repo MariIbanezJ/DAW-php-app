@@ -1,10 +1,49 @@
 <?php
+
+/**
+ * Confirmación de eliminación de productos - Vista CRUD
+ *
+ * Muestra diálogo de confirmación antes de eliminar un producto,
+ * validando el ID y mostrando información del producto a eliminar.
+ *
+ * @file      confirmar_eliminacio.php
+ */
+
+
+/**
+ * Confirmación de eliminación de producto
+ *
+ * Este archivo muestra una página de confirmación antes de eliminar definitivamente
+ * un producto de la base de datos. Recupera el nombre del producto por su ID y muestra
+ * al usuario una advertencia con opciones para cancelar o proceder.
+ *
+ *  Dependencias:
+ *  - Connexio: se encarga de la conexión con la base de datos
+ *  - Header: genera la cabecera HTML
+ *  - Footer: genera el pie de página HTML
+ *
+ * @package DAWphpapp
+ * @version 1.0
+ * @since 1.0
+ * @author Juan Marí Ibáñez
+ *
+ * @uses Connexio Para obtener la información del producto
+ * @uses Header Para mostrar la cabecera de la aplicación
+ * @uses Footer Para mostrar el pie de página de la aplicación
+ * @see Connexio::obtenirConnexio()
+ */
+
+
+// Conexión a la base de datos
 require_once('Connexio.php');
+
+// Cabecera común de la aplicación
 require_once('Header.php');
 
 // Verificar que se haya proporcionado un ID válido
 $id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
 
+// Redirigir si el ID no es válido
 if ($id <= 0) {
     header('Location: Principal.php?error=ID de producte no vàlid');
     exit();
@@ -20,6 +59,7 @@ $producte = $result->fetch_assoc();
 $stmt->close();
 $connexio->close();
 
+// Redirigir si el producto no existe
 if (!$producte) {
     header('Location: Principal.php?error=Producte no trobat');
     exit();
@@ -46,5 +86,6 @@ if (!$producte) {
 </div>
 
 <?php
+// Pie de página común de la aplicación
 require_once('Footer.php');
 ?>

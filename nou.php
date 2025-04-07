@@ -1,8 +1,50 @@
 <?php
+/**
+ * Procesamiento de altas de productos - Formulario CRUD
+ *
+ * Archivo que gestiona la inserción de nuevos productos en la base de datos
+ * mediante formularios web con validación y protección contra SQL injection.
+ *
+ * @file      nou.php
+ * /
+
 require_once('Connexio.php');
 
+/**
+ * Script para insertar un nuevo producto en la base de datos
+ *
+ * Este archivo procesa los datos enviados desde el formulario de alta de productos.
+ * Realiza validaciones, y si los datos son  correctos, inserta el nuevo producto en la tabla `productes`.
+ * Utiliza sentencias preparadas para prevenir inyecciones SQL.
+ *
+ *   Dependencias:
+ *   - Connexio: se encarga de la conexión con la base de datos
+ *
+ * @package DAWphpapp
+ * @version 1.0
+ * @since 1.0
+ * @author Juan Marí Ibáñez
+ *
+ * @uses Connexio Para la conexión con la base de datos
+ * @see Connexio::obtenirConnexio()
+ */
 class Inserir {
 
+    /**
+     * Inserta un nuevo producto en la base de datos
+     *
+     * Valida los datos de entrada, establece una conexión a la base de datos y
+     * ejecuta una sentencia preparada para insertar el producto.
+     *
+     * @param string $nom Nombre del producto
+     * @param string $descripcio Descripción del producto
+     * @param float $preu Precio del producto
+     * @param int $categoria_id ID de la categoría seleccionada
+     *
+     * @return void
+     * @throws Exception Si los datos son inválidos o ocurre un error en la base de datos
+     * @see Connexio::obtenirConnexio()
+     */
     public function afegirProducte($nom, $descripcio, $preu, $categoria_id) {
         // Validación de campos
         if (empty($nom) || empty($preu) || empty($categoria_id)) {

@@ -1,8 +1,42 @@
 <?php
+/**
+ * Componente Header - Plantilla HTML reutilizable
+ *
+ * Genera la estructura común de cabecera para todas las páginas, incluyendo:
+ * - Metadatos básicos
+ * - Barra de navegación responsive
+ * - Carrusel de imágenes
+ * - Estilos CSS integrados (Bootstrap 5 + personalizados)
+ *
+ * @file      Header.php
+ */
 
+
+/**
+ * Clase Header para generar el encabezado de la aplicación
+ *
+ * Esta clase imprime la estructura básica HTML, incluyendo:
+ * - el encabezado con metadatos y estilos
+ * - la barra de navegación
+ * - un carrusel de imágenes
+ *
+ * Utiliza Bootstrap 5 desde CDN y define estilos personalizados dentro de una etiqueta `<style>`.
+ *
+ * @package DAWphpapp
+ * @version 1.0
+ * @since 1.0
+ * @author Carles Canals
+ */
 class Header {
-    
-    // Método para mostrar el encabezado
+
+    /**
+     * Muestra el encabezado HTML completo con barra de navegación y carrusel
+     *
+     * Esta función imprime directamente en pantalla el `<head>`, la barra superior con menú
+     * de navegación, y un carrusel de imágenes utilizando Bootstrap.
+     *
+     * @return void
+     */
     public function mostrarHeader() {
         // Imprime la estructura básica de un documento HTML con el encabezado y los estilos
         echo '<!DOCTYPE html>
@@ -120,8 +154,12 @@ class Header {
     }
 }
 
-// Crea una instancia de la clase Header y llama al método mostrarHeader
+// Instancia y muestra el encabezado
+/** @var Header $header */
 $header = new Header();
+
+// Muestra el Header
+/** @see Header::mostrarHeader()*/
 $header->mostrarHeader();
 
 ?>
