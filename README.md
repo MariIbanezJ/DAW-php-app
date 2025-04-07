@@ -20,3 +20,4 @@
 - PHP 7.4 o superior
 - Base de datos MySQL 5.7+
 - Extensión MySQLi para PHP
+ 
